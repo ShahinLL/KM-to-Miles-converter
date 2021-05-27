@@ -1,0 +1,49 @@
+import tkinter
+import tkinter.messagebox
+
+class Kiloconv:
+    def __init__(self):
+
+        #The main window
+        self.main_window = tkinter.Tk()
+        
+        #2 frames too group the widgets
+        self.top_frame = tkinter.Frame(self.main_window)
+        self.bottom_frame = tkinter.Frame(self.main_window)
+
+        #The widgets for the top frame
+        self.promt_label = tkinter.Label(self.top_frame, text = 'Enter the distance in KM: ')
+        self.KM_entry = tkinter.Entry(self.top_frame, width = 20)
+
+        #Pack the top frame widgets
+        self.promt_label.pack(side = 'left')
+        self.KM_entry.pack(side = 'left')
+
+        #The button widget for the buttom frame
+        self.calc_button = tkinter.Button(self.bottom_frame, text = 'Convert the distance', command = self.convert)
+
+        #To exit the program
+        self.exit_button = tkinter.Button(self.bottom_frame, text = 'Exit', command = self.main_window.destroy)
+
+        #Pack the buttons
+        self.calc_button.pack(side = 'left')
+        self.exit_button.pack(side = 'left')
+
+        #Pack the fram
+        self.top_frame.pack()
+        self.bottom_frame.pack()
+        
+        #The tkinter main loop
+        tkinter.mainloop()
+
+    def convert(self):
+        #To get the value entered by the user
+        kilo = float(self.KM_entry.get())
+
+        #convert KM to miles
+        miles = kilo * 0.6214
+
+        #The display message
+        tkinter.messagebox.showinfo('Result ', str(kilo) + ' Kilometers is equal to: ' + str(format(miles, '.2f')) + ' miles.')
+
+Km_conv = Kiloconv()
